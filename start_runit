@@ -1,0 +1,4 @@
+#! /bin/sh
+
+env > /etc/envvars
+exec /sbin/runsvdir -P /etc/service

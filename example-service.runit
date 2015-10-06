@@ -1,0 +1,19 @@
+#! /bin/sh
+
+. /etc/envvars
+
+exec 2>&1 
+set -e
+
+umask 022
+
+
+PROGARGS=""
+PROGHOME="/"
+PROGNAME="/path/to/binary"
+
+
+export HOME=/root
+
+cd  "${PROGHOME}" &&  exec $PROGNAME $PROGARGS
+
