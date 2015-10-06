@@ -1,4 +1,16 @@
 #! /bin/sh
 
 env > /etc/envvars
+
+for script in /etc/runit_init.d/*
+do
+    echo >&2 "*** Running: $x"
+    $x
+    retval=$?
+    if [ $retval -ne 0 ];
+    then
+        echo >&2 "*** Failed with return value: $?"
+        exit $retval
+    fi
+done
 exec /sbin/runsvdir -P /etc/service
