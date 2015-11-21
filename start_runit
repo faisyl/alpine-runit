@@ -4,8 +4,8 @@ env > /etc/envvars
 
 for script in /etc/runit_init.d/*
 do
-    echo >&2 "*** Running: $x"
-    $x
+    echo >&2 "*** Running: $script"
+    $script
     retval=$?
     if [ $retval -ne 0 ];
     then
