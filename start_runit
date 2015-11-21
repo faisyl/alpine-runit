@@ -2,15 +2,26 @@
 
 env > /etc/envvars
 
+echo "Starting pre-service scritps in /etc/runit_init.d"
 for script in /etc/runit_init.d/*
 do
-    echo >&2 "*** Running: $script"
-    $script
-    retval=$?
-    if [ $retval -ne 0 ];
-    then
-        echo >&2 "*** Failed with return value: $?"
-        exit $retval
+    if [ -x "$script" ]; then
+        echo >&2 "*** Running: $script"
+        $script
+        retval=$?
+        if [ $retval -ne 0 ];
+        then
+            echo >&2 "*** Failed with return value: $?"
+            exit $retval
+        fi
     fi
 done
-exec /sbin/runsvdir -P /etc/service
+if [ $# -eq 1 ]; then
+    exec /sbin/runsvdir -P /etc/service
+fi
+/sbin/runsvdir -P /etc/service &
+
+[ "$1" == '--' ] && shift
+exec $@
+
+    
