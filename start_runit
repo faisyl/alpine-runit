@@ -9,14 +9,14 @@ do
         echo >&2 "*** Running: $script"
         $script
         retval=$?
-        if [ $retval -ne 0 ];
+        if [ $retval != 0 ];
         then
             echo >&2 "*** Failed with return value: $?"
             exit $retval
         fi
     fi
 done
-if [ $# -eq 1 ]; then
+if [ $# -eq 0 ]; then
     exec /sbin/runsvdir -P /etc/service
 fi
 /sbin/runsvdir -P /etc/service &
