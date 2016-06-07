@@ -2,7 +2,7 @@
 
 env > /etc/envvars
 
-echo "Starting pre-service scritps in /etc/runit_init.d"
+echo "Starting pre-service scripts in /etc/runit_init.d"
 for script in /etc/runit_init.d/*
 do
     if [ -x "$script" ]; then
