@@ -1,6 +1,7 @@
 #! /bin/sh
 
-env > /etc/envvars
+#env > /etc/envvars
+env  | sed -e 's/=/="/' | sed -e 's/$/"/'^C > /etc/envvars
 
 echo "Starting pre-service scripts in /etc/runit_init.d"
 for script in /etc/runit_init.d/*
