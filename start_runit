@@ -1,6 +1,6 @@
 #! /bin/sh
 
-#env  | sed -e 's/=/="/' | sed -e 's/$/"/'^C > /etc/envvars
+#env  | sed -e 's/=/="/' | sed -e 's/$/"/' > /etc/envvars
 for K in $(env | cut -d= -f1)
 do
     VAL=$(eval echo \$$K)
