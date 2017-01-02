@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 ADD start_runit /sbin/
 RUN 	mkdir /etc/container_environment &&\
